@@ -4,7 +4,7 @@ import "./shopPage.scss"
 const ShopPage = () => {
     return (
         <div>
-            <h1>Shope Page</h1>
+            <h1>This Is Shope Page</h1>
         </div>
     );
 }
