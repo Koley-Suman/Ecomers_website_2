@@ -5,6 +5,8 @@ import { getCatagoriesAndDocuments } from '../../utilitis/firebase/firebase';
 import { setcategories } from '../../store/products/product-reducer';
 import CategoriesPreview from '../../components/categories-preview/categories-preview';
 import { Route, Routes } from 'react-router-dom';
+import Categori from '../../components/categori/categori';
+
 
 const ShopPage = () => {
     const dispatch = useDispatch()
@@ -19,6 +21,8 @@ const ShopPage = () => {
         <Fragment>
             <Routes>
                 <Route index element={<CategoriesPreview/>}/>
+                <Route path=':category' element={<Categori/>}/>
+                
             </Routes>
         </Fragment>
     );

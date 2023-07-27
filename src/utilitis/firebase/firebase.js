@@ -1,4 +1,4 @@
-import { Password } from "@mui/icons-material";
+
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -71,10 +71,10 @@ export const createUserFromAuth = async (userauth) => {
   return userReferance;
 };
 
-export const signInAuthWithEmailAndPassword = async(email,Password)=>{
-  if (!email || !Password) return
+export const signInAuthWithEmailAndPassword = async(email,password)=>{
+  if (!email || !password) return
     
-  return signInWithEmailAndPassword(auth,email,Password)
+  return signInWithEmailAndPassword(auth,email,password)
 }
 
 export const createAuthUserWithEmailAndPassword = async(email,password)=>{

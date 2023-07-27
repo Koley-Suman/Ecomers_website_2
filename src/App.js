@@ -12,6 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import { SetCurrentUser } from "./store/user/user-reducer";
 import { useEffect } from "react";
+import CheckoutPage from "./routes/checkoutPage/checkoutPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,8 +31,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<HomePage />} />
-          <Route path="shop" element={<ShopPage />} />
+          <Route path="shop/*" element={<ShopPage />} />
           <Route path="auth" element={<Authentiaction />} />
+          <Route path="checkout" element={<CheckoutPage/>}/>
         </Route>
       </Routes>
     </div>
