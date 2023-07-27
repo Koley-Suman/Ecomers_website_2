@@ -43,6 +43,9 @@ googleprovider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
+// authentication.....................
+
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleprovider);
 export const db = getFirestore();
@@ -78,4 +81,17 @@ export const createAuthUserWithEmailAndPassword = async(email,password)=>{
   if (!email || !password) return
     
   return createUserWithEmailAndPassword(auth,email,password)
+}
+
+export const signOutUser = async() => await signOut(auth);
+
+export const onAuthStateChanged_Listener = (callback)=> onAuthStateChanged(auth,callback) 
+
+//Get product data from firebase........................
+
+export const getCatagoriesAndDocuments = async () =>{
+  const collectionRef= collection(db,'categories');
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(docSnapshot=>docSnapshot.data());
 }
