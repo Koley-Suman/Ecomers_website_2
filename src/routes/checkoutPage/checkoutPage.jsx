@@ -3,15 +3,17 @@ import "./checkoutPage.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems, selectCartTotal } from "../../store/cartItem/cartItem.selector";
 import { addItemToCart, cancelItemToCart, removeItemToCart } from "../../store/cartItem/cartItem-reducer";
+
+import PaymentForm from "../../components/payment/payment";
 const CheckoutPage = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector(selectCartItems);
     const cartTotal = useSelector(selectCartTotal);
   return (
     <div className="checkoutpage">
-      {cartItems.map((cartItem) => {
+      {cartItems.map((cartItem,i) => {
         return (
-          <div className="checkOutItem">
+          <div className="checkOutItem" key={i}>
             <img
               className="checkoutImg"
               src={cartItem.imageUrl}
@@ -44,6 +46,7 @@ const CheckoutPage = () => {
       <div className="cart_total">
         <h2>Total Price - ${cartTotal}</h2>
       </div>
+      <PaymentForm/>
     </div>
   );
 };
