@@ -7,8 +7,6 @@
 
 .env
 
-netlify.toml
-
 # testing
 /coverage
 
