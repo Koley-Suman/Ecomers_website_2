@@ -7,7 +7,7 @@ import {
   createUserFromAuth,
 } from "../../utilitis/firebase/firebase";
 import { updateProfile } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const defaultFormFilds = {
@@ -18,6 +18,8 @@ const SignUp = () => {
   };
   const [formFilds, setFormFilds] = useState(defaultFormFilds);
   const { email, password, confirmPassword, displayName } = formFilds;
+
+  const navigate = useNavigate()
 
   const handelChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +44,7 @@ const SignUp = () => {
         displayName: displayName,
       });
       resetFormFilds();
+      navigate("/");
       console.log(user);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {

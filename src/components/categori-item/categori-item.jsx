@@ -11,8 +11,8 @@ const CategoriItem = ({ Item }) => {
   return (
     <div>
       <div className="categories_crad">
-        <div className="image_container">
-          <img src={imageUrl} alt={`${name}`} />
+        <div className="image_container" style={{backgroundImage:`url(${imageUrl})`}}>
+          {/* <img src={imageUrl} alt={`${name}`} /> */}
         </div>
         <div className="details">
           <span>{name}</span>

@@ -9,6 +9,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  NextOrObserver,
+  User,
 } from "firebase/auth";
 import {
   collection,
@@ -20,6 +22,7 @@ import {
   setDoc,
   writeBatch,
 } from "firebase/firestore";
+import { type } from "os";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -50,7 +53,13 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleprovider);
 export const db = getFirestore();
 
-export const createUserFromAuth = async (userauth) => {
+export type userData = {
+  createDate:Date;
+  displayName:string;
+  email:string;  
+}
+
+export const createUserFromAuth = async (userauth:User) => {
   const userReferance = doc(db, "user", userauth.uid);
   const userSnapshot = await getDoc(userReferance);
 
@@ -65,19 +74,19 @@ export const createUserFromAuth = async (userauth) => {
         createDate,
       });
     } catch (error) {
-      console.log("error", error.message);
+      console.log("error", error);
     }
   }
   return userReferance;
 };
 
-export const signInAuthWithEmailAndPassword = async(email,password)=>{
+export const signInAuthWithEmailAndPassword = async(email:string,password:string)=>{
   if (!email || !password) return
     
   return signInWithEmailAndPassword(auth,email,password)
 }
 
-export const createAuthUserWithEmailAndPassword = async(email,password)=>{
+export const createAuthUserWithEmailAndPassword = async(email:string,password:string)=>{
   if (!email || !password) return
     
   return createUserWithEmailAndPassword(auth,email,password)
@@ -85,9 +94,11 @@ export const createAuthUserWithEmailAndPassword = async(email,password)=>{
 
 export const signOutUser = async() => await signOut(auth);
 
-export const onAuthStateChanged_Listener = (callback)=> onAuthStateChanged(auth,callback) 
+export const onAuthStateChanged_Listener = (callback:NextOrObserver<User>)=> onAuthStateChanged(auth,callback) 
 
 //Get product data from firebase........................
+
+
 
 export const getCatagoriesAndDocuments = async () =>{
   const collectionRef= collection(db,'categories');

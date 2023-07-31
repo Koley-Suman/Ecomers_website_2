@@ -13,7 +13,7 @@ const SignIn = () => {
   const navigate = useNavigate()
   const googleSignIn = async () => {
     const { user } = await signInWithGooglePopup();
-
+    navigate("/");
     console.log(user);
   };
 
