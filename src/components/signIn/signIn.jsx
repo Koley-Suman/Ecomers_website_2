@@ -6,7 +6,7 @@ import {
   signInAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../../utilitis/firebase/firebase";
-import { useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 const SignIn = () => {
 
@@ -89,6 +89,9 @@ const SignIn = () => {
             </Button>
           </div>
         </form>
+        <span>
+           Haven't any account? <Link to="signUp" >SIGN UP</Link>
+        </span>
       </div>
     </div>
   );

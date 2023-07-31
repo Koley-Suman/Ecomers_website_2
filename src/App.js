@@ -32,7 +32,7 @@ function App() {
         <Route path="/" element={<Navigation />}>
           <Route index element={<HomePage />} />
           <Route path="shop/*" element={<ShopPage />} />
-          <Route path="auth" element={<Authentiaction />} />
+          <Route path="auth/*" element={<Authentiaction />} />
           <Route path="checkout" element={<CheckoutPage/>}/>
         </Route>
       </Routes>

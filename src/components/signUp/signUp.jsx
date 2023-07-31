@@ -7,6 +7,7 @@ import {
   createUserFromAuth,
 } from "../../utilitis/firebase/firebase";
 import { updateProfile } from "firebase/auth";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const defaultFormFilds = {
@@ -99,6 +100,7 @@ const SignUp = () => {
             SIGN UP
           </Button>
         </form>
+        <span>Already have an account? <Link to="/auth">SIGN IN</Link></span>
       </div>
     </div>
   );
