@@ -1,4 +1,3 @@
-
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -53,13 +52,7 @@ export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleprovider);
 export const db = getFirestore();
 
-export type userData = {
-  createDate:Date;
-  displayName:string;
-  email:string;  
-}
-
-export const createUserFromAuth = async (userauth:User) => {
+export const createUserFromAuth = async (userauth) => {
   const userReferance = doc(db, "user", userauth.uid);
   const userSnapshot = await getDoc(userReferance);
 
@@ -80,29 +73,28 @@ export const createUserFromAuth = async (userauth:User) => {
   return userReferance;
 };
 
-export const signInAuthWithEmailAndPassword = async(email:string,password:string)=>{
-  if (!email || !password) return
-    
-  return signInWithEmailAndPassword(auth,email,password)
-}
+export const signInAuthWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
 
-export const createAuthUserWithEmailAndPassword = async(email:string,password:string)=>{
-  if (!email || !password) return
-    
-  return createUserWithEmailAndPassword(auth,email,password)
-}
+  return signInWithEmailAndPassword(auth, email, password);
+};
 
-export const signOutUser = async() => await signOut(auth);
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
 
-export const onAuthStateChanged_Listener = (callback:NextOrObserver<User>)=> onAuthStateChanged(auth,callback) 
+  return createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChanged_Listener = (callback) =>
+  onAuthStateChanged(auth, callback);
 
 //Get product data from firebase........................
 
-
-
-export const getCatagoriesAndDocuments = async () =>{
-  const collectionRef= collection(db,'categories');
+export const getCatagoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(docSnapshot=>docSnapshot.data());
-}
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
